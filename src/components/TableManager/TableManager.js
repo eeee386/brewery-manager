@@ -4,7 +4,6 @@ export default class TableManager extends Component {
   render() {
     return (
       <div>
-        
       </div>
     )
   }

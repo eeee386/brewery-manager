@@ -7,8 +7,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Route exact path='/' component={TableManager} />
-        <Route exact path='/search' component={Search} />
+        <div>
+          <Route exact path='/' component={TableManager} />
+          <Route exact path='/search' component={Search} />
+        </div>
       </Router>
     );
   }
