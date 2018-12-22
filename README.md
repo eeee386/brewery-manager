@@ -4,6 +4,8 @@ Created in React, Redux, Electron, and SQLite.
 
 ##Version 0.0.2 New redux idea implemented
  - New redux idea implemented, with reducers, actionCreator function and types.
+ - Fixed react router
+
 
 ##Version 0.0.1 Basic Structure is created
  - React, Redux and Electron added, and configured.  
