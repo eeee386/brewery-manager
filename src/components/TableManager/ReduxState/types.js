@@ -20,4 +20,7 @@ export const tableTypes = {
     UPDATE_ONE_STARTED: {typeName: 'UPDATE_ONE_STARTED', startType: true,  payloadName: payloadNames.TABLE_LOADING },
     UPDATE_ONE_FAILED: {typeName: 'UPDATE_ONE_FAILED', failType: true, payloadName: payloadNames.TABLE_EXCEPTION },
     UPDATE_ONE_COMPLETED: {typeName: 'UPDATE_ONE_COMPLETED', completeType: true, payloadName: payloadNames.UPDATED_IN_TABLE},
+    CONNECTION_STARTED: {typeName: 'CONNECTION_STARTED', startType: true,  payloadName: payloadNames.TABLE_LOADING },
+    CONNECTION_FAILED: {typeName: 'CONNECTION_FAILED', failType: true, payloadName: payloadNames.TABLE_EXCEPTION },
+    CONNECTION_COMPLETED: {typeName: 'CONNECTION_COMPLETED', completeType: true, payloadName: payloadNames.UPDATED_IN_TABLE},
 }
