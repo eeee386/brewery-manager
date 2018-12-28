@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import {payloadNames, sagaTypes} from './ReduxState/types';
 
-export default class Search extends Component {
+class Search extends Component {
   render() {
     return (
       <div>
@@ -9,3 +11,15 @@ export default class Search extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  results: state[payloadNames.SEARCH_RESULT],
+  loading: state[payloadNames.SEARCH_LOADING],
+});
+
+const matchDispatchToProps = (dispatch) => ({
+  searchByName: (name) => dispatch(sagaTypes.SEARCH_BY_NAME, name),
+  searchByTaxID: (taxID) => dispatch(sagaTypes.SEARCH_BY_TAXID, taxID),
+});
+
+export default connect(mapStateToProps, matchDispatchToProps)(Search);

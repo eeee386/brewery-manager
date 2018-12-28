@@ -25,6 +25,5 @@ export const rootReducer = combineReducers({
 
 export const actionCreator = (typeObject, payloadContent) => ({
     type: typeObject.typeName,
-    payload: {[typeObject.payloadName]: payloadContent},
-    loading: typeObject.startType,
+    payload: {[typeObject.payloadName]: payloadContent, loading: typeObject.startType}
 });

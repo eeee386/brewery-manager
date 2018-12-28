@@ -6,6 +6,14 @@ const payloadNames = {
     DELETED_FROM_TABLE: 'deletedFromTable',
     UPDATED_IN_TABLE: 'updatedInTable',
 }
+
+const sagaTypes = {
+    CONNECT_SQL = 'CONNECT_SQL',
+    FETCH_TABLE = 'FETCH_TABLE',
+    ADD_NEW = 'ADD_NEW',
+    DELETE_ONE = 'DELETE_ONE',
+    UPDATE_ONE = 'UPDATE_ONE',
+}
 // Add new async type, by adding typeName, asyncType (startType, completeType, failType), payloadName.
 export const tableTypes = {
     FETCH_TABLE_STARTED: {typeName: 'FETCH_TABLE_STARTED', startType: true, payloadName: payloadNames.TABLE_LOADING},
