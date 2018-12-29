@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import {payloadNames, sagaTypes} from './ReduxState/types';
+import {payloadNames, searchSagaTypes} from './ReduxState/types';
 
 class Search extends Component {
   render() {
@@ -18,8 +18,8 @@ const mapStateToProps = (state) => ({
 });
 
 const matchDispatchToProps = (dispatch) => ({
-  searchByName: (name) => dispatch(sagaTypes.SEARCH_BY_NAME, name),
-  searchByTaxID: (taxID) => dispatch(sagaTypes.SEARCH_BY_TAXID, taxID),
+  searchByName: (name) => dispatch(searchSagaTypes.SEARCH_BY_NAME, name),
+  searchByTaxID: (taxID) => dispatch(searchSagaTypes.SEARCH_BY_TAXID, taxID),
 });
 
 export default connect(mapStateToProps, matchDispatchToProps)(Search);

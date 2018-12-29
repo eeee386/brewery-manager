@@ -7,7 +7,6 @@ import connectSql from './components/saga';
 class App extends Component {
   constructor(props) {
     super(props);
-    connectSql();
   }
 
   render() {

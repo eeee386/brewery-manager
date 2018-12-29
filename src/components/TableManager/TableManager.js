@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { sagaTypes, payloadNames } from './ReduxState/types';
+import { tableSagaTypes, payloadNames } from './ReduxState/types';
+import s from './TableManager.scss';
 
 class TableManager extends Component {
-  constructor() {
+  constructor(props) {
     super(props);
     props.fetchDistillation();
   }
@@ -11,6 +12,7 @@ class TableManager extends Component {
   render() {
     return (
       <div>
+        {this.props.table}
       </div>
     )
   }
@@ -22,10 +24,10 @@ const mapStateToProps = (state) => ({
 });
 
 const matchDispatchToProps = (dispatch) => ({
-  fetchDistillation: () => dispatch(sagaTypes.FETCH_TABLES),
-  addNewDistillation: (newDist) => dispatch(sagaTypes.ADD_NEW, newDist),
-  updateDistillation: (updatedDist) => dispatch(sagaTypes.UPDATE_ONE, updatedDist),
-  deleteDistillation: (deletedDist) => dispatch(sagaTypes.DELETE_ONE, deletedDist),
+  fetchDistillation: () => dispatch(tableSagaTypes.FETCH_TABLES),
+  addNewDistillation: (newDist) => dispatch(tableSagaTypes.ADD_NEW, newDist),
+  updateDistillation: (updatedDist) => dispatch(tableSagaTypes.UPDATE_ONE, updatedDist),
+  deleteDistillation: (deletedDist) => dispatch(tableSagaTypes.DELETE_ONE, deletedDist),
 });
 
 export default connect(mapStateToProps, matchDispatchToProps)(TableManager);

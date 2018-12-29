@@ -1,12 +1,12 @@
 import { call, put, take } from 'redux-saga/effects'
 import { SQLService } from '../SQLService/SQLService';
 import { actionCreator } from './reduxManager';
-import { searchTypes, sagaTypes } from './Search/ReduxState/types';
-import { tableTypes, sagaTypes } from './TableManager/ReduxState/types';
+import { searchTypes, searchSagaTypes } from './Search/ReduxState/types';
+import { tableTypes, tableSagaTypes } from './TableManager/ReduxState/types';
 
 
 let sqlService;
-function* connectSql() {
+export function* connectSql() {
     yield put(actionCreator(tableTypes.CONNECTION_STARTED));
     try {
         sqlService = new SQLService();
@@ -18,7 +18,7 @@ function* connectSql() {
 
 function* watchConnectSql() {
     while(true){
-        yield take(sagaTypes.CONNECT_SQL, connectSql);
+        yield take(tableSagaTypes.CONNECT_SQL, connectSql);
     }
 }
 
@@ -34,7 +34,7 @@ function* fetchDistillations() {
 
 function* watchFetchDistillation() {
     while(true){
-        yield take(sagaTypes.FETCH_TABLE, fetchDistillations);
+        yield take(tableSagaTypes.FETCH_TABLE, fetchDistillations);
     }
 }
 
@@ -50,7 +50,7 @@ function* createDistillation(distillation) {
 
 function* watchCreateDistillation() {
     while(true){
-        yield take(sagaTypes.ADD_NEW, createDistillation);
+        yield take(tableSagaTypes.ADD_NEW, createDistillation);
     }
 }
 
@@ -66,7 +66,7 @@ function* updateDistillation(distillation) {
 
 function* watchUpdateDistillation() {
     while(true){
-        yield take(sagaTypes.UPDATE_ONE, updateDistillation);
+        yield take(tableSagaTypes.UPDATE_ONE, updateDistillation);
     }
 }
 
@@ -83,7 +83,7 @@ function* deleteDistillation(distillation) {
 
 function* watchDeleteDistillation() {
     while(true) {
-        yield take(sagaTypes.DELETE_ONE, deleteDistillation);
+        yield take(tableSagaTypes.DELETE_ONE, deleteDistillation);
     }
 }
 
@@ -99,7 +99,7 @@ function* searchByName(name) {
 
 function* watchSearchByName() {
     while(true){
-        yield take(sagaTypes.searchByName, searchByName);
+        yield take(searchSagaTypes.searchByName, searchByName);
     }
 }
 
@@ -115,6 +115,6 @@ function* searchByTaxID(taxID) {
 
 function* watchSearchByTaxID() {
     while(true){
-        yield take(sagaTypes.searchByTaxID, searchByTaxID);
+        yield take(searchSagaTypes.searchByTaxID, searchByTaxID);
     }
 }

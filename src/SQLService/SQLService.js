@@ -86,7 +86,7 @@ export class SQLService {
         return this.distillation.find({where: {id: modelObject.id}}).then(distillation => distillation.update(modelObject).then(distillation => distillation));
     }
 
-    async deleteDistillation(id) {
+    async deleteDistillation(modelObject) {
         return this.distillation.find({where: {id: modelObject.id}}).then(distillation => distillation.destroy());
     }
 }

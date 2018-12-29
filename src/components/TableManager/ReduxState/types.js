@@ -1,4 +1,4 @@
-const payloadNames = {
+export const payloadNames = {
     TABLE_LOADING: 'tableLoading',
     TABLE_EXCEPTION: 'tableException',
     TABLES: 'tables',
@@ -7,12 +7,12 @@ const payloadNames = {
     UPDATED_IN_TABLE: 'updatedInTable',
 }
 
-const sagaTypes = {
-    CONNECT_SQL = 'CONNECT_SQL',
-    FETCH_TABLE = 'FETCH_TABLE',
-    ADD_NEW = 'ADD_NEW',
-    DELETE_ONE = 'DELETE_ONE',
-    UPDATE_ONE = 'UPDATE_ONE',
+export const tableSagaTypes = {
+    CONNECT_SQL: 'CONNECT_SQL',
+    FETCH_TABLE: 'FETCH_TABLE',
+    ADD_NEW: 'ADD_NEW',
+    DELETE_ONE: 'DELETE_ONE',
+    UPDATE_ONE: 'UPDATE_ONE',
 }
 // Add new async type, by adding typeName, asyncType (startType, completeType, failType), payloadName.
 export const tableTypes = {

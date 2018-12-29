@@ -1,10 +1,10 @@
-const payloadNames = {
+export const payloadNames = {
     SEARCH_LOADING: 'searchLoading',
     SEARCH_EXCEPTION: 'searchException',
     SEARCH_RESULT: 'searchResult',
 }
 
-const sagaTypes = {
+export const searchSagaTypes = {
     SEARCH_BY_NAME: 'SEARCH_BY_NAME',
     SEARCH_BY_TAXID: 'SEARCH_BY_TAXID',
 }
