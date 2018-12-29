@@ -1,18 +1,27 @@
+## Distillery Manager
+
 This a simple distillery manager app, for my dad's and mom's business.
 
 Created in React, Redux, Electron, and SQLite.
 
-##Version 0.0.3 SQLite with Sequelize first draft implemented, Redux Saga installed.
+#### Version 0.0.4: Redux Saga first draft created, main components connected.
+ - Redux Saga added to store, first implementation created.
+ - Main Components are connected to redux store, mapStateToProps and MatchDispatchToProps created for main components.
+ - SagaTypes created for saga specific actions.
+
+#### Version 0.0.3: SQLite with Sequelize first draft implemented, Redux Saga installed.
  - Sequelize and SQLite installed, and first draft created within SQLService class.
  - Redux Saga installed, saga.js created
 
-##Version 0.0.2 New redux idea implemented
+#### Version 0.0.2: New redux idea implemented
  - New redux idea implemented, with reducers, actionCreator function and types.
  - Fixed react router
 
 
-##Version 0.0.1 Basic Structure is created
+#### Version 0.0.1: Basic Structure is created
  - React, Redux and Electron added, and configured.  
  - No test yet, no working implementation, no SQLite implementation.
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
