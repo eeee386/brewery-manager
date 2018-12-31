@@ -5,8 +5,8 @@ export const payloadNames = {
 }
 
 export const searchSagaTypes = {
-    SEARCH_BY_NAME: 'SEARCH_BY_NAME',
-    SEARCH_BY_TAXID: 'SEARCH_BY_TAXID',
+    SEARCH_BY_NAME: {typeName: 'SEARCH_BY_NAME'},
+    SEARCH_BY_TAXID: {typeName: 'SEARCH_BY_TAXID'},
 }
 
 export const searchTypes = {

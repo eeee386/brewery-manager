@@ -18,7 +18,7 @@ export function* connectSql() {
 
 function* watchConnectSql() {
     while(true){
-        yield take(tableSagaTypes.CONNECT_SQL, connectSql);
+        yield take(tableSagaTypes.CONNECT_SQL.typeName, connectSql);
     }
 }
 
@@ -34,7 +34,7 @@ function* disconnectSql() {
 
 function* watchDisconnectSql() {
     while(true){
-        yield take(tableSagaTypes.DISCONNECT_SQL, disconnectSql);
+        yield take(tableSagaTypes.DISCONNECT_SQL.typeName, disconnectSql);
     }
 }
 
@@ -50,7 +50,7 @@ function* fetchDistillations() {
 
 function* watchFetchDistillation() {
     while(true){
-        yield take(tableSagaTypes.FETCH_TABLE, fetchDistillations);
+        yield take(tableSagaTypes.FETCH_TABLE.typeName, fetchDistillations);
     }
 }
 
@@ -66,7 +66,7 @@ function* createDistillation(distillation) {
 
 function* watchCreateDistillation() {
     while(true){
-        yield take(tableSagaTypes.ADD_NEW, createDistillation);
+        yield take(tableSagaTypes.ADD_NEW.typeName, createDistillation);
     }
 }
 
@@ -82,7 +82,7 @@ function* updateDistillation(distillation) {
 
 function* watchUpdateDistillation() {
     while(true){
-        yield take(tableSagaTypes.UPDATE_ONE, updateDistillation);
+        yield take(tableSagaTypes.UPDATE_ONE.typeName, updateDistillation);
     }
 }
 
@@ -99,7 +99,7 @@ function* deleteDistillation(distillation) {
 
 function* watchDeleteDistillation() {
     while(true) {
-        yield take(tableSagaTypes.DELETE_ONE, deleteDistillation);
+        yield take(tableSagaTypes.DELETE_ONE.typeName, deleteDistillation);
     }
 }
 
@@ -115,7 +115,7 @@ function* searchByName(name) {
 
 function* watchSearchByName() {
     while(true){
-        yield take(searchSagaTypes.searchByName, searchByName);
+        yield take(searchSagaTypes.searchByName.typeName, searchByName);
     }
 }
 
@@ -131,6 +131,6 @@ function* searchByTaxID(taxID) {
 
 function* watchSearchByTaxID() {
     while(true){
-        yield take(searchSagaTypes.searchByTaxID, searchByTaxID);
+        yield take(searchSagaTypes.searchByTaxID.typeName, searchByTaxID);
     }
 }
