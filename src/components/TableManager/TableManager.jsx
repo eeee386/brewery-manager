@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { tableSagaTypes, payloadNames } from './ReduxState/types';
+import {actionCreator} from '../reduxManager';
 import s from './TableManager.scss';
 
 class TableManager extends Component {
@@ -10,9 +11,10 @@ class TableManager extends Component {
   }
 
   render() {
+    console.log(this.props.table);
     return (
       <div>
-        {this.props.table}
+        Hello!
       </div>
     )
   }
@@ -24,10 +26,10 @@ const mapStateToProps = (state) => ({
 });
 
 const matchDispatchToProps = (dispatch) => ({
-  fetchDistillation: () => dispatch(tableSagaTypes.FETCH_TABLES),
-  addNewDistillation: (newDist) => dispatch(tableSagaTypes.ADD_NEW, newDist),
-  updateDistillation: (updatedDist) => dispatch(tableSagaTypes.UPDATE_ONE, updatedDist),
-  deleteDistillation: (deletedDist) => dispatch(tableSagaTypes.DELETE_ONE, deletedDist),
+  fetchDistillation: () => dispatch(actionCreator(tableSagaTypes.FETCH_TABLE)),
+  addNewDistillation: (newDist) => dispatch(actionCreator(tableSagaTypes.ADD_NEW, newDist)),
+  updateDistillation: (updatedDist) => dispatch(actionCreator(tableSagaTypes.UPDATE_ONE, updatedDist)),
+  deleteDistillation: (deletedDist) => dispatch(actionCreator(tableSagaTypes.DELETE_ONE, deletedDist)),
 });
 
 export default connect(mapStateToProps, matchDispatchToProps)(TableManager);

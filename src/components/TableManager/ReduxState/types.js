@@ -8,11 +8,12 @@ export const payloadNames = {
 }
 
 export const tableSagaTypes = {
-    CONNECT_SQL: 'CONNECT_SQL',
-    FETCH_TABLE: 'FETCH_TABLE',
-    ADD_NEW: 'ADD_NEW',
-    DELETE_ONE: 'DELETE_ONE',
-    UPDATE_ONE: 'UPDATE_ONE',
+    CONNECT_SQL: {typeName: 'CONNECT_SQL'},
+    FETCH_TABLE: {typeName: 'FETCH_TABLE'},
+    ADD_NEW: {typeName: 'ADD_NEW'},
+    DELETE_ONE: {typeName: 'DELETE_ONE'},
+    UPDATE_ONE: {typeName: 'UPDATE_ONE'},
+    DISCONNECT_SQL: {typeName: 'DISCONNECT_SQL'},
 }
 // Add new async type, by adding typeName, asyncType (startType, completeType, failType), payloadName.
 export const tableTypes = {
@@ -28,7 +29,10 @@ export const tableTypes = {
     UPDATE_ONE_STARTED: {typeName: 'UPDATE_ONE_STARTED', startType: true,  payloadName: payloadNames.TABLE_LOADING },
     UPDATE_ONE_FAILED: {typeName: 'UPDATE_ONE_FAILED', failType: true, payloadName: payloadNames.TABLE_EXCEPTION },
     UPDATE_ONE_COMPLETED: {typeName: 'UPDATE_ONE_COMPLETED', completeType: true, payloadName: payloadNames.UPDATED_IN_TABLE},
-    CONNECTION_STARTED: {typeName: 'CONNECTION_STARTED', startType: true,  payloadName: payloadNames.TABLE_LOADING },
-    CONNECTION_FAILED: {typeName: 'CONNECTION_FAILED', failType: true, payloadName: payloadNames.TABLE_EXCEPTION },
-    CONNECTION_COMPLETED: {typeName: 'CONNECTION_COMPLETED', completeType: true, payloadName: payloadNames.UPDATED_IN_TABLE},
+    CONNECTION_STARTED: {typeName: 'CONNECTION_STARTED', startType: true},
+    CONNECTION_FAILED: {typeName: 'CONNECTION_FAILED', failType: true},
+    CONNECTION_COMPLETED: {typeName: 'CONNECTION_COMPLETED', completeType: true},
+    DISCONNECTION_STARTED: {typeName: 'DISCONNECTION_STARTED', startType: true},
+    DISCONNECTION_FAILED: {typeName: 'DISCONNECTION_FAILED', failType: true},
+    DISCONNECTION_COMPLETED: {typeName: 'DISCONNECTION_COMPLETED', completeType: true},
 }

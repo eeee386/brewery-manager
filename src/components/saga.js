@@ -10,15 +10,31 @@ export function* connectSql() {
     yield put(actionCreator(tableTypes.CONNECTION_STARTED));
     try {
         sqlService = new SQLService();
-        yield call(actionCreator(tableTypes.DELETE_ONE_COMPLETED));
+        yield put(actionCreator(tableTypes.DELETE_ONE_COMPLETED));
     } catch (error) {
-        yield call(actionCreator(tableTypes.CONNECTION_FAILED));
+        yield put(actionCreator(tableTypes.CONNECTION_FAILED));
     }
 }
 
 function* watchConnectSql() {
     while(true){
         yield take(tableSagaTypes.CONNECT_SQL, connectSql);
+    }
+}
+
+function* disconnectSql() {
+    yield put(actionCreator(tableTypes.DISCONNECTION_STARTED));
+    try {
+        sqlService.closeConnection();
+        yield put(actionCreator(tableTypes.DISCONNECTION_COMPLETED));
+    } catch (error) {
+        yield put(actionCreator(tableTypes.DISCONNECTION_FAILED));
+    }
+}
+
+function* watchDisconnectSql() {
+    while(true){
+        yield take(tableSagaTypes.DISCONNECT_SQL, disconnectSql);
     }
 }
 

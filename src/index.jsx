@@ -7,13 +7,9 @@ import createSagaMiddleware from 'redux-saga';
 import * as serviceWorker from './serviceWorker';
 import {rootReducer} from './components/reduxManager';
 import logger from 'redux-logger';
-import sagaMiddlewareFactory from 'redux-saga';
-import { connectSql } from './components/saga';
 
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger));
-
-sagaMiddleware.run(connectSql);
 
 ReactDOM.render(
 <Provider store={store}>
