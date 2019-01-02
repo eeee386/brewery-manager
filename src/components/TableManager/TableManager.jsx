@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { tableSagaTypes, payloadNames } from './ReduxState/types';
 import {actionCreator} from '../reduxManager';
 import s from './TableManager.scss';
+import _ from 'lodash';
+import TableList from './Components/TableList';
+import TableForm from './Components/TableForm';
 
 class TableManager extends Component {
   constructor(props) {
@@ -11,10 +14,13 @@ class TableManager extends Component {
   }
 
   render() {
-    console.log(this.props.table);
+    const {table, addNewDistillation} = this.props;
+    console.log(table);
     return (
       <div>
-        Hello!
+        <a href={'/search'}>Keresés</a>
+        {_.isEmpty(table) ? "Nincsenek főzetések": <TableList table={table} />}
+        <TableForm handleSubmit={addNewDistillation}/>
       </div>
     )
   }
