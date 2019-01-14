@@ -4,6 +4,8 @@ This a simple distillery manager app, for my dad's and mom's business.
 
 Created in React, Redux, Redux Saga, Electron, and TypeORM with sql.js.
 
+##### Version 0.0.5.1 BugFix: Form Reducer is in the store
+
 #### Version 0.0.5 Sequelize with SQLite3 changed to TypeORM with sql.js, and several config issue fixed.
  - TypeORM and TypeScript added, and configured.
  - SQLService class uses TypeORM and sql.js installed, and added to SQLService.
