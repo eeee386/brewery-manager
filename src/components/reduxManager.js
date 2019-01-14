@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import { searchTypes } from './Search/ReduxState/types';
 import { tableTypes } from './TableManager/ReduxState/types';
+import { reducer as form } from 'redux-form';
 
 const search = (state = {}, { type, payload }) => {
     if(searchTypes[type]){
@@ -20,7 +21,8 @@ const tables = (state = {}, { type, payload }) => {
 
 export const rootReducer = combineReducers({
     search,
-    tables
+    tables,
+    form,
 })
 
 export const actionCreator = (typeObject, payloadContent) => ({
