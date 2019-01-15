@@ -23,9 +23,10 @@ class TableForm extends Component {
           <Field name="name" component={() => this.renderFormInput("Név", "text")} />
           <Field name="address" component={() => this.renderFormInput("Lakcím", "text")} />
           <Field name="taxID" component={() => this.renderFormInput("AdóSzám", "text")} />
-          <Field name="originID" component={() => this.renderFormInput("Származási Szám", "text")} />
-          <Field name="HLF" component={() => this.renderFormInput("Dátum", "text")} />
-          <Field name="weightInKilograms" component={() => this.renderFormInput("Dátum", "text")} />
+          <Field name="originID" component={() => this.renderFormInput("Származási Igazolvány Szám", "text")} />
+          <Field name="HLF" component={() => this.renderFormInput("Hektoliterfok", "text")} />
+          <Field name="weightInKilograms" component={() => this.renderFormInput("Tömeg", "text")} />
+          <button onClick={this.props.handleSubmit}>Küldés</button>
         </div>
       </Form>
     )

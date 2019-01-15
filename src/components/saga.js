@@ -66,6 +66,7 @@ function* createDistillation(distillation) {
 
 function* watchCreateDistillation() {
     while(true){
+        console.log('saga is called');
         yield take(tableSagaTypes.ADD_NEW.typeName, createDistillation);
     }
 }
@@ -133,4 +134,17 @@ function* watchSearchByTaxID() {
     while(true){
         yield take(searchSagaTypes.searchByTaxID.typeName, searchByTaxID);
     }
+}
+
+export function* watcherSagas() {
+    yield all([
+        watchConnectSql(),
+        watchDisconnectSql(),
+        watchFetchDistillation(),
+        watchCreateDistillation(),
+        watchUpdateDistillation(),
+        watchDeleteDistillation(),
+        watchSearchByName(),
+        watchSearchByTaxID(),
+    ])
 }
