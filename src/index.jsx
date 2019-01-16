@@ -7,9 +7,9 @@ import createSagaMiddleware from 'redux-saga';
 import * as serviceWorker from './serviceWorker';
 import {rootReducer} from './components/reduxManager';
 import logger from 'redux-logger';
-import watcherSagas from './components/saga';
+import {watcherSagas} from './components/saga';
 
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger));
 sagaMiddleware.run(watcherSagas);
 

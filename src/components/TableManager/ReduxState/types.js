@@ -10,9 +10,9 @@ export const payloadNames = {
 export const tableSagaTypes = {
     CONNECT_SQL: {typeName: 'CONNECT_SQL'},
     FETCH_TABLE: {typeName: 'FETCH_TABLE'},
-    ADD_NEW: {typeName: 'ADD_NEW'},
-    DELETE_ONE: {typeName: 'DELETE_ONE'},
-    UPDATE_ONE: {typeName: 'UPDATE_ONE'},
+    ADD_NEW: {typeName: 'ADD_NEW', payloadName: 'addableDistillation'},
+    DELETE_ONE: {typeName: 'DELETE_ONE', payloadName: 'deletableDistillation'},
+    UPDATE_ONE: {typeName: 'UPDATE_ONE', payloadName: 'updatableDistillation'},
     DISCONNECT_SQL: {typeName: 'DISCONNECT_SQL'},
 }
 // Add new async type, by adding typeName, asyncType (startType, completeType, failType), payloadName.

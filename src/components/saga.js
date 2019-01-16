@@ -1,4 +1,4 @@
-import { call, put, take } from 'redux-saga/effects'
+import { call, put, take, all } from 'redux-saga/effects'
 import { SQLService } from '../SQLService/SQLService';
 import { actionCreator } from './reduxManager';
 import { searchTypes, searchSagaTypes } from './Search/ReduxState/types';
@@ -7,9 +7,12 @@ import { tableTypes, tableSagaTypes } from './TableManager/ReduxState/types';
 
 let sqlService;
 export function* connectSql() {
+    console.log('connectSQL is called');
     yield put(actionCreator(tableTypes.CONNECTION_STARTED));
     try {
-        sqlService = new SQLService();
+        console.log('SQLService is called');
+        sqlService = yield call(new SQLService());
+        console.log('sqlService: ', sqlService);
         yield put(actionCreator(tableTypes.DELETE_ONE_COMPLETED));
     } catch (error) {
         yield put(actionCreator(tableTypes.CONNECTION_FAILED));
@@ -25,7 +28,7 @@ function* watchConnectSql() {
 function* disconnectSql() {
     yield put(actionCreator(tableTypes.DISCONNECTION_STARTED));
     try {
-        sqlService.closeConnection();
+        yield call(sqlService.closeConnection());
         yield put(actionCreator(tableTypes.DISCONNECTION_COMPLETED));
     } catch (error) {
         yield put(actionCreator(tableTypes.DISCONNECTION_FAILED));
@@ -54,10 +57,10 @@ function* watchFetchDistillation() {
     }
 }
 
-function* createDistillation(distillation) {
+function* createDistillation(action) {
     yield put(actionCreator(tableTypes.ADD_NEW_STARTED));
     try {
-        const newDist = yield call(sqlService.createNewDistillation(distillation));
+        const newDist = yield call(sqlService.createNewDistillation(action.payload[tableSagaTypes.ADD_NEW.payloadName]));
         yield put(actionCreator(tableTypes.ADD_NEW_COMPLETED, newDist));
     } catch (error) {
         yield put(actionCreator(tableTypes.ADD_NEW_FAILED, error));
@@ -66,15 +69,14 @@ function* createDistillation(distillation) {
 
 function* watchCreateDistillation() {
     while(true){
-        console.log('saga is called');
         yield take(tableSagaTypes.ADD_NEW.typeName, createDistillation);
     }
 }
 
-function* updateDistillation(distillation) {
+function* updateDistillation(action) {
     yield put(actionCreator(tableTypes.UPDATE_ONE_STARTED));
     try {
-        const updatedDistillation = yield call(sqlService.updateDistillation(distillation));
+        const updatedDistillation = yield call(sqlService.updateDistillation(action.payload[tableSagaTypes.UPDATE_ONE.payloadName]));
         yield put(actionCreator(tableTypes.UPDATE_ONE_COMPLETED, updatedDistillation));
     } catch (error) {
         yield put(actionCreator(tableTypes.UPDATE_ONE_FAILED, error));
@@ -88,10 +90,10 @@ function* watchUpdateDistillation() {
 }
 
 
-function* deleteDistillation(distillation) {
+function* deleteDistillation(action) {
     yield put(actionCreator(tableTypes.DELETE_ONE_STARTED));
     try {
-        const deletedDistillation = yield call(sqlService.deleteDistillation(distillation));
+        const deletedDistillation = yield call(sqlService.deleteDistillation(action.payload[tableSagaTypes.DELETE_ONE.payloadName]));
         yield put(actionCreator(tableTypes.DELETE_ONE_COMPLETED, deletedDistillation));
     } catch (error) {
         yield put(actionCreator(tableTypes.DELETE_ONE_FAILED, error));
@@ -104,10 +106,10 @@ function* watchDeleteDistillation() {
     }
 }
 
-function* searchByName(name) {
+function* searchByName(action) {
     yield put(actionCreator(searchTypes.START_SEARCH_BY_NAME));
     try {
-        const results = yield call(sqlService.findAllByName(name));
+        const results = yield call(sqlService.findAllByName(action.payload));
         yield put(actionCreator(searchTypes.SEARCH_BY_NAME_COMPLETED, results));
     } catch (error) {
         yield put(actionCreator(searchTypes.SEARCH_BY_NAME_FAILED, error));
@@ -120,10 +122,10 @@ function* watchSearchByName() {
     }
 }
 
-function* searchByTaxID(taxID) {
+function* searchByTaxID(action) {
     yield put(actionCreator(searchTypes.START_SEARCH_BY_NUMBER));
     try {
-        const results = yield call(sqlService.findAllByTaxID(taxID));
+        const results = yield call(sqlService.findAllByTaxID(action.payload));
         yield put(actionCreator(searchTypes.SEARCH_BY_NUMBER_COMPLETED, results));
     } catch (error) {
         yield put(actionCreator(searchTypes.SEARCH_BY_NUMBER_FAILED, error))
