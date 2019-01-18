@@ -9,6 +9,7 @@ export class SQLService {
     distillation: any;
 
     async createConnection() {
+        console.log('');
         this.distillation = await createConnection({
             type: "sqljs",
             entities: [

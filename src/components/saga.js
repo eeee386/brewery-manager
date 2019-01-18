@@ -7,10 +7,8 @@ import { tableTypes, tableSagaTypes } from './TableManager/types/types';
 
 const sqlService = new SQLService();
 export function* connectSql() {
-    console.log('connectSQL is called');
     yield put(actionCreator(tableTypes.CONNECTION_STARTED));
     try {
-        console.log('SQLService is called');
         yield call(sqlService.createConnection);
         console.log('sqlService: ', sqlService);
         yield put(actionCreator(tableTypes.CONNECTION_COMPLETED));
@@ -23,7 +21,6 @@ export function* connectSql() {
 }
 
 function* watchConnectSql() {
-        console.log('it is called');
         console.log(tableSagaTypes.CONNECT_SQL.typeName);
         yield takeEvery(tableSagaTypes.CONNECT_SQL.typeName, connectSql);
 }
