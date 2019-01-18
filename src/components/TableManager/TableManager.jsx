@@ -10,7 +10,7 @@ import TableForm from './Components/TableForm';
 class TableManager extends Component {
   constructor(props) {
     super(props);
-    props.fetchDistillation();
+    // props.fetchDistillation();
   }
 
   render() {
@@ -32,7 +32,7 @@ const mapStateToProps = (state) => ({
 });
 
 const matchDispatchToProps = (dispatch) => ({
-  fetchDistillation: () => dispatch(actionCreator(tableSagaTypes.FETCH_TABLE)),
+  // fetchDistillation: () => dispatch(actionCreator(tableSagaTypes.FETCH_TABLE)),
   addNewDistillation: (newDist) => dispatch(actionCreator(tableSagaTypes.ADD_NEW, newDist)),
   updateDistillation: (updatedDist) => dispatch(actionCreator(tableSagaTypes.UPDATE_ONE, updatedDist)),
   deleteDistillation: (deletedDist) => dispatch(actionCreator(tableSagaTypes.DELETE_ONE, deletedDist)),

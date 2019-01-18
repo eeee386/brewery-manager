@@ -5,17 +5,20 @@ import { searchTypes, searchSagaTypes } from './Search/types/types';
 import { tableTypes, tableSagaTypes } from './TableManager/types/types';
 
 
-let sqlService;
+const sqlService = new SQLService();
 export function* connectSql() {
     console.log('connectSQL is called');
     yield put(actionCreator(tableTypes.CONNECTION_STARTED));
     try {
         console.log('SQLService is called');
-        sqlService = yield call(new SQLService());
+        yield call(sqlService.createConnection);
         console.log('sqlService: ', sqlService);
-        yield put(actionCreator(tableTypes.DELETE_ONE_COMPLETED));
+        yield put(actionCreator(tableTypes.CONNECTION_COMPLETED));
+        console.log('fetchTableCalled');
+        yield put(actionCreator(tableSagaTypes.FETCH_TABLE));
     } catch (error) {
-        yield put(actionCreator(tableTypes.CONNECTION_FAILED));
+        console.log('connectError: ', error);
+        yield put(actionCreator(tableTypes.CONNECTION_FAILED, error));
     }
 }
 
@@ -28,7 +31,7 @@ function* watchConnectSql() {
 function* disconnectSql() {
     yield put(actionCreator(tableTypes.DISCONNECTION_STARTED));
     try {
-        yield call(sqlService.closeConnection());
+        yield call(sqlService.closeConnection);
         yield put(actionCreator(tableTypes.DISCONNECTION_COMPLETED));
     } catch (error) {
         yield put(actionCreator(tableTypes.DISCONNECTION_FAILED));
@@ -42,7 +45,7 @@ function* watchDisconnectSql() {
 function* fetchDistillations() {
     yield put(actionCreator(tableTypes.FETCH_TABLE_STARTED));
     try {
-        const distillations = yield call(sqlService.findAll());
+        const distillations = yield call(sqlService.findAll);
         yield put(actionCreator(tableTypes.FETCH_TABLE_COMPLETED, distillations));
     } catch (error) {
         yield put(actionCreator(tableTypes.FETCH_TABLE_FAILED, error));

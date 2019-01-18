@@ -34,9 +34,7 @@ export const actionCreator = (typeObject, payloadContent) => {
         action.payload = {[typeObject.payloadName]: payloadContent}
     }
 
-    if (typeObject.startType) {
-        action.payload = action.payload ? {...action.payload, loading: true} : {loading: true}
-    }
+    action.payload = action.payload ? {...action.payload, loading: typeObject.startType} : {loading: typeObject.startType};
 
     return action;
 };

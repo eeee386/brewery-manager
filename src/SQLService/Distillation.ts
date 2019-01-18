@@ -1,7 +1,10 @@
-import {Entity, Double, PrimaryGeneratedColumn, Column} from 'typeorm';
+import {Entity, Double, PrimaryGeneratedColumn, Column, PrimaryColumn} from 'typeorm';
 
 @Entity()
 export class Distillation {
+
+    @PrimaryColumn()
+    lofasz: number;
 
     @PrimaryGeneratedColumn()
     id: number;

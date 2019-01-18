@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import {createConnection} from "typeorm";
-import {Distillation} from "./distillation";
+import {Distillation} from "./Distillation";
  
 
 
@@ -8,19 +8,15 @@ export class SQLService {
 
     distillation: any;
 
-    constructor() {
-        createConnection({
+    async createConnection() {
+        this.distillation = await createConnection({
             type: "sqljs",
             entities: [
                 Distillation
             ],
             synchronize: true,
             logging: true,
-        }).then((connection) => {
-            this.distillation = connection;
-            console.log('Connection created')
-        })
-
+        });
     }
 
     async findAll() {

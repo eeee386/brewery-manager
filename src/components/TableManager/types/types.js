@@ -30,9 +30,9 @@ export const tableTypes = {
     UPDATE_ONE_FAILED: {typeName: 'UPDATE_ONE_FAILED', failType: true, payloadName: payloadNames.TABLE_EXCEPTION },
     UPDATE_ONE_COMPLETED: {typeName: 'UPDATE_ONE_COMPLETED', completeType: true, payloadName: payloadNames.UPDATED_IN_TABLE},
     CONNECTION_STARTED: {typeName: 'CONNECTION_STARTED', startType: true},
-    CONNECTION_FAILED: {typeName: 'CONNECTION_FAILED', failType: true},
+    CONNECTION_FAILED: {typeName: 'CONNECTION_FAILED', failType: true, payloadName: payloadNames.TABLE_EXCEPTION},
     CONNECTION_COMPLETED: {typeName: 'CONNECTION_COMPLETED', completeType: true},
     DISCONNECTION_STARTED: {typeName: 'DISCONNECTION_STARTED', startType: true},
-    DISCONNECTION_FAILED: {typeName: 'DISCONNECTION_FAILED', failType: true},
+    DISCONNECTION_FAILED: {typeName: 'DISCONNECTION_FAILED', failType: true, payloadName: payloadNames.TABLE_EXCEPTION},
     DISCONNECTION_COMPLETED: {typeName: 'DISCONNECTION_COMPLETED', completeType: true},
 }
