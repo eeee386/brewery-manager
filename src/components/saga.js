@@ -15,7 +15,6 @@ export function* connectSql() {
         console.log('fetchTableCalled');
         yield put(actionCreator(tableSagaTypes.FETCH_TABLE));
     } catch (error) {
-        console.log('connectError: ', error);
         yield put(actionCreator(tableTypes.CONNECTION_FAILED, error));
     }
 }
