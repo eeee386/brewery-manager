@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import {payloadNames, searchSagaTypes} from './ReduxState/types';
+import {payloadNames, searchSagaTypes} from './types/types';
 
 class Search extends Component {
   render() {

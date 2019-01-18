@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import { searchTypes } from './Search/ReduxState/types';
-import { tableTypes } from './TableManager/ReduxState/types';
+import { searchTypes } from './Search/types/types';
+import { tableTypes } from './TableManager/types/types';
 import {reducer as form} from 'redux-form';
 
 const search = (state = {}, { type, payload }) => {

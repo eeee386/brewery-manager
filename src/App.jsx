@@ -5,7 +5,7 @@ import TableManager from './components/TableManager/TableManager';
 import Search from './components/Search/Search';
 import "reflect-metadata";
 import { actionCreator } from './components/reduxManager';
-import { tableSagaTypes } from './components/TableManager/ReduxState/types';
+import { tableSagaTypes } from './components/TableManager/types/types';
 
 class App extends Component {
   constructor(props) {

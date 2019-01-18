@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { tableSagaTypes, payloadNames } from './ReduxState/types';
+import { tableSagaTypes, payloadNames } from './types/types';
 import {actionCreator} from '../reduxManager';
 import s from './TableManager.scss';
 import _ from 'lodash';

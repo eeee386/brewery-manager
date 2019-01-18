@@ -1,8 +1,8 @@
-import { call, put, take, all } from 'redux-saga/effects'
+import { call, put, all, takeEvery } from 'redux-saga/effects'
 import { SQLService } from '../SQLService/SQLService';
 import { actionCreator } from './reduxManager';
-import { searchTypes, searchSagaTypes } from './Search/ReduxState/types';
-import { tableTypes, tableSagaTypes } from './TableManager/ReduxState/types';
+import { searchTypes, searchSagaTypes } from './Search/types/types';
+import { tableTypes, tableSagaTypes } from './TableManager/types/types';
 
 
 let sqlService;
@@ -20,9 +20,9 @@ export function* connectSql() {
 }
 
 function* watchConnectSql() {
-    while(true){
-        yield take(tableSagaTypes.CONNECT_SQL.typeName, connectSql);
-    }
+        console.log('it is called');
+        console.log(tableSagaTypes.CONNECT_SQL.typeName);
+        yield takeEvery(tableSagaTypes.CONNECT_SQL.typeName, connectSql);
 }
 
 function* disconnectSql() {
@@ -36,9 +36,7 @@ function* disconnectSql() {
 }
 
 function* watchDisconnectSql() {
-    while(true){
-        yield take(tableSagaTypes.DISCONNECT_SQL.typeName, disconnectSql);
-    }
+    yield takeEvery(tableSagaTypes.DISCONNECT_SQL.typeName, disconnectSql);
 }
 
 function* fetchDistillations() {
@@ -51,10 +49,8 @@ function* fetchDistillations() {
     }
 }
 
-function* watchFetchDistillation() {
-    while(true){
-        yield take(tableSagaTypes.FETCH_TABLE.typeName, fetchDistillations);
-    }
+export function* watchFetchDistillation() {
+    yield takeEvery(tableSagaTypes.FETCH_TABLE.typeName, fetchDistillations);
 }
 
 function* createDistillation(action) {
@@ -68,9 +64,7 @@ function* createDistillation(action) {
 }
 
 function* watchCreateDistillation() {
-    while(true){
-        yield take(tableSagaTypes.ADD_NEW.typeName, createDistillation);
-    }
+    yield takeEvery(tableSagaTypes.ADD_NEW.typeName, createDistillation);
 }
 
 function* updateDistillation(action) {
@@ -84,9 +78,8 @@ function* updateDistillation(action) {
 }
 
 function* watchUpdateDistillation() {
-    while(true){
-        yield take(tableSagaTypes.UPDATE_ONE.typeName, updateDistillation);
-    }
+    yield takeEvery(tableSagaTypes.UPDATE_ONE.typeName, updateDistillation);
+
 }
 
 
@@ -101,9 +94,7 @@ function* deleteDistillation(action) {
 }
 
 function* watchDeleteDistillation() {
-    while(true) {
-        yield take(tableSagaTypes.DELETE_ONE.typeName, deleteDistillation);
-    }
+    yield takeEvery(tableSagaTypes.DELETE_ONE.typeName, deleteDistillation);
 }
 
 function* searchByName(action) {
@@ -117,9 +108,7 @@ function* searchByName(action) {
 }
 
 function* watchSearchByName() {
-    while(true){
-        yield take(searchSagaTypes.searchByName.typeName, searchByName);
-    }
+    yield takeEvery(searchSagaTypes.SEARCH_BY_NAME.typeName, searchByName);
 }
 
 function* searchByTaxID(action) {
@@ -133,9 +122,7 @@ function* searchByTaxID(action) {
 }
 
 function* watchSearchByTaxID() {
-    while(true){
-        yield take(searchSagaTypes.searchByTaxID.typeName, searchByTaxID);
-    }
+    yield takeEvery(searchSagaTypes.SEARCH_BY_TAXID.typeName, searchByTaxID);
 }
 
 export function* watcherSagas() {

@@ -7,7 +7,6 @@ import {Distillation} from "./distillation";
 export class SQLService {
 
     distillation: any;
-    distillationRepository: any;
 
     constructor() {
         createConnection({
