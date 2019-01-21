@@ -1,11 +1,10 @@
 import { call, put, all, takeEvery } from 'redux-saga/effects'
-import { SQLService } from '../SQLService/SQLService';
 import { actionCreator } from './reduxManager';
 import { searchTypes, searchSagaTypes } from './Search/types/types';
 import { tableTypes, tableSagaTypes } from './TableManager/types/types';
 
 
-const sqlService = new SQLService();
+const sqlService = {};
 export function* connectSql() {
     yield put(actionCreator(tableTypes.CONNECTION_STARTED));
     try {
