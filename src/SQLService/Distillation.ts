@@ -3,9 +3,6 @@ import {Entity, Double, PrimaryGeneratedColumn, Column, PrimaryColumn} from 'typ
 @Entity()
 export class Distillation {
 
-    @PrimaryColumn()
-    lofasz: number;
-
     @PrimaryGeneratedColumn()
     id: number;
 

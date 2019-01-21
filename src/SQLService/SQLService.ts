@@ -1,16 +1,16 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
+import {Connection, createConnection} from "typeorm";
 import {Distillation} from "./Distillation";
  
 
 
 export class SQLService {
 
-    distillation: any;
+    connection: Connection;
 
     async createConnection() {
-        console.log('');
-        this.distillation = await createConnection({
+        console.log('connection started');
+        this.connection = await createConnection({
             type: "sqljs",
             entities: [
                 Distillation
@@ -21,55 +21,55 @@ export class SQLService {
     }
 
     async findAll() {
-        return await this.distillation.getRepository(Distillation).createQueryBuilder().getMany();
+        return await this.connection.getRepository(Distillation).createQueryBuilder().getMany();
     }
 
     async findAllByName(nameToFind: string) {
-        return await this.distillation.getRepository(Distillation).createQueryBuilder("distillation").where("distillation.name = :name", {name: nameToFind}).getMany();
+        return await this.connection.getRepository(Distillation).createQueryBuilder("connection").where("connection.name = :name", {name: nameToFind}).getMany();
     }
     async findAllByTaxID(taxIDToFind: string) {
-        return await this.distillation.getRepository(Distillation).createQueryBuilder("distillation").where("distillation.taxID = :taxID", {taxID: taxIDToFind}).getMany();
+        return await this.connection.getRepository(Distillation).createQueryBuilder("connection").where("connection.taxID = :taxID", {taxID: taxIDToFind}).getMany();
     }
 
     async sumAllHLFByName(nameToFind: string) {
-        return await this.distillation.getRepository(Distillation)
-        .createQueryBuilder("distillation")
-        .select("distillation.name")
-        .addSelect("SUM(distillation.HLF)", "sum")
-        .where("distillation.name = :name", {name: nameToFind})
+        return await this.connection.getRepository(Distillation)
+        .createQueryBuilder("connection")
+        .select("connection.name")
+        .addSelect("SUM(connection.HLF)", "sum")
+        .where("connection.name = :name", {name: nameToFind})
         .getRawOne();
     }
 
     async sumAllHLFByTaxID(taxIDToFind: string) {
-        return await this.distillation.getRepository(Distillation)
-        .createQueryBuilder("distillation")
-        .select("distillation.name")
-        .addSelect("SUM(distillation.HLF)", "sum")
-        .where("distillation.taxID = :taxID", {taxID: taxIDToFind})
+        return await this.connection.getRepository(Distillation)
+        .createQueryBuilder("connection")
+        .select("connection.name")
+        .addSelect("SUM(connection.HLF)", "sum")
+        .where("connection.taxID = :taxID", {taxID: taxIDToFind})
         .getRawOne();
     }
 
     async sumAllWeightByName(nameToFind: string) {
-        return await this.distillation.getRepository(Distillation)
-        .createQueryBuilder("distillation")
-        .select("distillation.name")
-        .addSelect("SUM(distillation.weightInKilograms)", "sum")
-        .where("distillation.name = :name", {name: nameToFind})
+        return await this.connection.getRepository(Distillation)
+        .createQueryBuilder("connection")
+        .select("connection.name")
+        .addSelect("SUM(connection.weightInKilograms)", "sum")
+        .where("connection.name = :name", {name: nameToFind})
         .getRawOne();
     }
 
     async sumAllWeightByTaxID(taxIDToFind: string) {
-        return await this.distillation.getRepository(Distillation)
-        .createQueryBuilder("distillation")
-        .select("distillation.name")
-        .addSelect("SUM(distillation.HLF)", "sum")
-        .where("distillation.taxID = :taxID", {taxID: taxIDToFind})
+        return await this.connection.getRepository(Distillation)
+        .createQueryBuilder("connection")
+        .select("connection.name")
+        .addSelect("SUM(connection.HLF)", "sum")
+        .where("connection.taxID = :taxID", {taxID: taxIDToFind})
         .getRawOne();
     }
 
 
     async createNewDistillation(modelObject: Distillation) {
-        return await this.distillation
+        return await this.connection
         .createQueryBuilder()
         .insert()
         .into(Distillation)
@@ -80,7 +80,7 @@ export class SQLService {
     }
 
     async updateDistillation(modelObject: Distillation) {
-        return await this.distillation
+        return await this.connection
         .createQueryBuilder()
         .update(Distillation)
         .set(modelObject)
@@ -89,7 +89,7 @@ export class SQLService {
     }
 
     async deleteDistillation(modelObject: Distillation) {
-        return await this.distillation.createQueryBuilder()
+        return await this.connection.createQueryBuilder()
         .delete()
         .from(Distillation)
         .where("id = :id", { id: modelObject.id })
@@ -97,6 +97,6 @@ export class SQLService {
     }
 
     async closeConnection() {
-        await this.distillation.close();
+        await this.connection.close();
     }
 }

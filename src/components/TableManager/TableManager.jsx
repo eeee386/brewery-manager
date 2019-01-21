@@ -8,11 +8,6 @@ import TableList from './Components/TableList';
 import TableForm from './Components/TableForm';
 
 class TableManager extends Component {
-  constructor(props) {
-    super(props);
-    // props.fetchDistillation();
-  }
-
   render() {
     const {table, addNewDistillation} = this.props;
     console.log(table);
