@@ -2,7 +2,7 @@
 
 This a simple distillery manager app, for my dad's and mom's business.
 
-Created in React, Redux, Redux Saga, Electron, and TypeORM with sql.js.
+Created in React, Redux, Redux Saga, Electron.
 
 #### 0.0.6 TypeORM taken out, minor fixes.
 - TypeORM taken out because of memory issues.
