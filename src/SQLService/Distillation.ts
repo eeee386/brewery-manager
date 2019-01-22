@@ -1,4 +1,4 @@
-import {Entity, Double, PrimaryGeneratedColumn, Column, PrimaryColumn} from 'typeorm';
+import {Entity, Double, PrimaryGeneratedColumn, Column} from 'typeorm/browser';
 
 @Entity()
 export class Distillation {

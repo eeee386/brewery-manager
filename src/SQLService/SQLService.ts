@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import {Connection, createConnection} from "typeorm";
+import {Connection, createConnection} from 'typeorm/browser';
 import {Distillation} from "./Distillation";
  
 
