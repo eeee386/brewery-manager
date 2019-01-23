@@ -36,7 +36,3 @@ Created in React, Redux, Redux Saga, Electron.
 #### Version 0.0.1: Basic Structure is created
  - React, Redux and Electron added, and configured.  
  - No test yet, no working implementation, no SQLite implementation.
-
-
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
