@@ -1,50 +1,34 @@
 {
   "name": "brewery-manager",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@types/lodash": "^4.14.119",
-    "@types/node": "^10.12.18",
-    "@types/react": "^16.7.18",
-    "@types/react-dom": "^16.0.11",
-    "electron": "^3.0.13",
-    "lodash": "^4.17.11",
-    "node": "^11.7.0",
-    "node-pre-gyp": "^0.12.0",
-    "node-sass": "^4.11.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-redux": "^6.0.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1",
-    "redux": "^4.0.1",
-    "redux-form": "^8.1.0",
-    "redux-logger": "^3.0.6",
-    "redux-saga": "^0.16.2",
-    "reflect-metadata": "^0.1.12",
-    "sql.js": "^0.5.0",
-    "typeorm": "^0.2.12",
-    "typescript": "^3.2.2"
-  },
-  "main": "src/electron-starter.js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron": "electron ."
+    "start": "webpack --mode development",
+    "build": "webpack --mode production"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eeee386/brewery-manager.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eeee386/brewery-manager/issues"
+  },
+  "homepage": "https://github.com/eeee386/brewery-manager#readme",
   "devDependencies": {
-
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.2.4",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1"
+  },
+  "dependencies": {
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
   }
 }
