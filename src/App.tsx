@@ -29,7 +29,7 @@ class App extends Component<> {
   }
 }
 
-const matchDispatchToProps = (dispatch: Dispatch<void>) => ({
+const matchDispatchToProps = (dispatch: Dispatch<>) => ({
   connectSQL: () => dispatch(actionCreator(tableSagaTypes.CONNECT_SQL)),
   disconnectSQL: () => dispatch(actionCreator(tableSagaTypes.DISCONNECT_SQL)) 
 });

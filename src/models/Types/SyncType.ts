@@ -1,4 +1,4 @@
 interface SyncType extends Type {
-    asyncType?: AsyncTypes
-    payloadName: string,
+    asyncType: AsyncTypes
+    payloadName?: string,
 }
