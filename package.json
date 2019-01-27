@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/eeee386/brewery-manager#readme",
   "devDependencies": {
+    "@types/react-redux": "^7.0.1",
     "awesome-typescript-loader": "^5.2.1",
     "source-map-loader": "^0.2.4",
     "typescript": "^3.2.4",
