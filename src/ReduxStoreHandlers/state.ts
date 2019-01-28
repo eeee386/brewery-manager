@@ -1,4 +1,11 @@
-const search = (state = {}, { type, payload }) => {
+import { tableTypes } from '../models/Types/TableTypes/TableTypes';
+import { searchTypes } from '../models/Types/SearchTypes/SearchTypes';
+import { Action } from '../ReduxStoreHandlers/actionFactory';
+import {reducer as form} from 'redux-form';
+import {combineReducers} from 'redux';
+
+const search = (state: {[key:string]: any} = {}, action: Action) => {
+  const {type, payload} = action;
     if(searchTypes[type]){
       return {...state, ...payload}
     } else {
@@ -6,7 +13,8 @@ const search = (state = {}, { type, payload }) => {
     }
   };
 
-const tables = (state = {}, { type, payload }) => {
+const tables = (state: {[key:string]: any} = {}, action: Action) => {
+  const {type, payload} = action;
     if (tableTypes[type]) {
       return {...state, ...payload};
     } else {
