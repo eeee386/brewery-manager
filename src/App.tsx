@@ -6,9 +6,10 @@ import Search from './components/Search/Search';
 import "reflect-metadata";
 import { ActionFactory, Action } from './ReduxStoreHandlers/actionFactory';
 import { tableSagaTypes } from './models/Types/TableTypes/TableTypes';
+import { ConnectedComponentProps } from './models/ConnectTypes/ConnectTypes';
 
-class App extends Component<> {
-  constructor(props) {
+class App extends Component<ConnectedComponentProps> {
+  constructor(props: ConnectedComponentProps) {
     super(props);
     props.connectSQL();
   }
