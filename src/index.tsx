@@ -1,9 +1,19 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import {rootReducer} from './ReduxStoreHandlers/state';
+import logger from 'redux-logger';
+import {watcherSagas} from './ReduxStoreHandlers/saga';
 
-import { Hello } from "./components/Hello";
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware, logger));
+sagaMiddleware.run(watcherSagas);
 
 ReactDOM.render(
-    <Hello compiler="TypeScript" framework="React" />,
-    document.getElementById('root') as HTMLElement
-);
+<Provider store={store}>
+    <App />
+</Provider>,
+ document.getElementById('root'));
