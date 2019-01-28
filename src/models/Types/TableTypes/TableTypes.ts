@@ -7,6 +7,15 @@ const enum payloadNames {
     UPDATED_IN_TABLE = 'updatedInTable',
 }
 
+const tableSagaTypes: {[key: string]: SagaType} = {
+    CONNECT_SQL: new SagaType('CONNECT_SQL'),
+    FETCH_TABLE: new SagaType('FETCH_TABLE'),
+    ADD_NEW: new SagaType('ADD_NEW', 'addableDistillation'),
+    DELETE_ONE: new SagaType('DELETE_ONE', 'deletableDistillation'),
+    UPDATE_ONE: new SagaType('UPDATE_ONE', 'updatableDistillation'),
+    DISCONNECT_SQL: new SagaType('DISCONNECT_SQL'),
+}
+
 const tableTypes: {[key: string]: ReduxType} = {
     FETCH_TABLE_STARTED: new ReduxType('FETCH_TABLE_STARTED', AsyncTypes.startType, payloadNames.TABLE_LOADING),
     FETCH_TABLE_FAILED: new ReduxType('FETCH_TABLE_FAILED', AsyncTypes.failType, payloadNames.TABLE_EXCEPTION),
