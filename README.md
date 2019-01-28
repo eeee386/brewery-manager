@@ -4,6 +4,10 @@ This a simple distillery manager app, for my dad's and mom's business.
 
 Created in React, Redux, Redux Saga, Electron.
 
+##### Version 0.0.5.4-4 ReduxStoreHandler folder created, ActionFactory, Action class, ReduxStore Created
+
+##### Version 0.0.5.4-3 Types converted to TypScript added
+
 ##### Version 0.0.5.4-2 Barebones Webpack project created, TypeScript and React
 
 ##### Version 0.0.5.4 TypeORM fixed, it seems to work.
