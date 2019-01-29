@@ -10,6 +10,8 @@ Created in React, Redux, Redux Saga, Electron.
 
 ##### Version 0.0.5.4-3 Types converted to TypScript added
 
+##### Version 0.0.5.4-3 TSX, Webpack watch configured for development 
+
 ##### Version 0.0.5.4-2 Barebones Webpack project created, TypeScript and React
 
 ##### Version 0.0.5.4 TypeORM fixed, it seems to work.
