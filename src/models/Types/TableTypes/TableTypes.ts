@@ -1,4 +1,4 @@
-const enum payloadNames {
+export const enum payloadNames {
     TABLE_LOADING = 'tableLoading',
     TABLE_EXCEPTION = 'tableException',
     TABLES = 'tables',

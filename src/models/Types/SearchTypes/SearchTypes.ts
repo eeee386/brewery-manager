@@ -1,4 +1,4 @@
-const enum payloadNames {
+export const enum payloadNames {
     SEARCH_LOADING = 'searchLoading',
     SEARCH_EXCEPTION = 'searchException',
     SEARCH_RESULT = 'searchResult',

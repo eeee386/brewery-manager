@@ -1,14 +1,14 @@
-import React, { Component, Dispatch } from 'react';
+import * as React from 'react';
 import {HashRouter as Router, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import TableManager from './components/TableManager/TableManager';
+import TableManager from './components/Tables/TableManager';
 import Search from './components/Search/Search';
 import "reflect-metadata";
 import { ActionFactory, Action } from './ReduxStoreHandlers/actionFactory';
 import { tableSagaTypes } from './models/Types/TableTypes/TableTypes';
 import { ConnectedComponentProps } from './models/ConnectTypes/ConnectTypes';
 
-class App extends Component<ConnectedComponentProps> {
+class App extends React.Component<ConnectedComponentProps> {
   constructor(props: ConnectedComponentProps) {
     super(props);
     props.connectSQL();
@@ -30,7 +30,7 @@ class App extends Component<ConnectedComponentProps> {
   }
 }
 
-const matchDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const matchDispatchToProps = (dispatch: React.Dispatch<Action>) => ({
   connectSQL: () => dispatch(ActionFactory(tableSagaTypes.CONNECT_SQL)),
   disconnectSQL: () => dispatch(ActionFactory(tableSagaTypes.DISCONNECT_SQL)) 
 });
