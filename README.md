@@ -4,6 +4,8 @@ This a simple distillery manager app, for my dad's and mom's business.
 
 Created in React, Redux, Redux Saga, Electron.
 
+##### Version 0.0.5.4-8 Components added, Scss loader has to be configured in webpack. 
+
 ##### Version 0.0.5.4-7 SQLService, Saga, Distillation model remade in TS; new Connected React Types, ReduxState type added
 
 ##### Version 0.0.5.4-6 ReduxStoreHandler folder created, ActionFactory, Action class, ReduxStore Created
