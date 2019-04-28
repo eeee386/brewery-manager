@@ -1,4 +1,5 @@
 import {Distillation} from '../models/Distillation/Distillation';
+import {ReduxType} from '../models/Types/TypeModels/ReduxType';
 
 export class Action {
     type: string;
@@ -16,7 +17,12 @@ export class Action {
             this.loading = loading;
         }
     }
+
+    createAction(){
+        return Object.assign({}, this);
+    }
 }
+
 
 //TODO: Any should be changed.
 export const ActionFactory = (type: Type, typeContent?: any) => {
@@ -25,7 +31,7 @@ export const ActionFactory = (type: Type, typeContent?: any) => {
     const payloadContent = typeContent || null;
     if(type instanceof ReduxType) {
         const loading = type.asyncType == AsyncTypes.startType;
-        return new Action(typeName, payloadName, payloadContent, loading);
+        return new Action(typeName, payloadName, payloadContent, loading).createAction();
     }
-    return new Action(typeName, payloadName, payloadContent);
+    return new Action(typeName, payloadName, payloadContent).createAction();
 }

@@ -1,6 +1,6 @@
 // All the types that directly modifies the redux state.
 
-class ReduxType implements Type {
+export class ReduxType implements Type {
     typeName: string;
     asyncType: AsyncTypes;
     payloadName?: string;

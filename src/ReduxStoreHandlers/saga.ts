@@ -9,11 +9,10 @@ const sqlService = new SQLService();
 function* connectSql(): IterableIterator<Effect> {
     yield put(ActionFactory(tableTypes.CONNECTION_STARTED));
     try {
-        yield call(sqlService.createConnection);
         console.log('sqlService: ', sqlService);
         yield put(ActionFactory(tableTypes.CONNECTION_COMPLETED));
-        console.log('fetchTableCalled');
-        yield put(ActionFactory(tableSagaTypes.FETCH_TABLE));
+        // console.log('fetchTableCalled');
+        // yield put(ActionFactory(tableSagaTypes.FETCH_TABLE));
     } catch (error) {
         yield put(ActionFactory(tableTypes.CONNECTION_FAILED, error));
     }
@@ -27,7 +26,6 @@ function* watchConnectSql(): IterableIterator<Effect> {
 function* disconnectSql(): IterableIterator<Effect> {
     yield put(ActionFactory(tableTypes.DISCONNECTION_STARTED));
     try {
-        yield call(sqlService.closeConnection);
         yield put(ActionFactory(tableTypes.DISCONNECTION_COMPLETED));
     } catch (error) {
         yield put(ActionFactory(tableTypes.DISCONNECTION_FAILED));
@@ -41,7 +39,9 @@ function* watchDisconnectSql(): IterableIterator<Effect> {
 function* fetchDistillations(): IterableIterator<Effect> {
     yield put(ActionFactory(tableTypes.FETCH_TABLE_STARTED));
     try {
+        console.log('sqlService: ', sqlService)
         const distillations = yield call(sqlService.findAll);
+        console.log('distillations: ', distillations);
         yield put(ActionFactory(tableTypes.FETCH_TABLE_COMPLETED, distillations));
     } catch (error) {
         yield put(ActionFactory(tableTypes.FETCH_TABLE_FAILED, error));

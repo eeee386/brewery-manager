@@ -21,15 +21,15 @@ class TableManager extends React.Component<ConnectedComponentProps> {
       <div>
         <a href={'/search'}>Keresés</a>
         {isEmpty(table) ? "Nincsenek főzetések": <TableList table={table} />}
-        <TableForm handleSubmit={addNewDistillation}/>
+        <TableForm onSubmit={addNewDistillation}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state: StateProps) => ({
-  table: state[payloadNames.TABLES],
-  tableLoading: state[payloadNames.TABLE_LOADING],
+  table: state.tables[payloadNames.TABLES],
+  tableLoading: state.tables[payloadNames.TABLE_LOADING],
 });
 
 const matchDispatchToProps = (dispatch: React.Dispatch<Action>) => ({

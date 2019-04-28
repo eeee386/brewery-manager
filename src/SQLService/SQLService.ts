@@ -1,102 +1,58 @@
-import "reflect-metadata";
-import {Connection, createConnection, InsertResult, UpdateResult, DeleteResult} from 'typeorm';
-import {Distillation} from '../models/Distillation/Distillation';
+const NeDB = require('nedb/browser-version/out/nedb');
+import {Distillation} from '../models/Distillation/Distillation'
  
-
-
 export class SQLService {
 
-    connection: Connection;
+    db: any;
 
-    async createConnection(): Promise<void> {
-        console.log('connection started');
-        this.connection = await createConnection({
-            type: "sqljs",
-            entities: [
-                Distillation
-            ],
-            synchronize: true,
-            logging: true,
-        });
+    constructor(){
+        this.db= new NeDB({autoload: true});
     }
 
-    async findAll() {
-        return await this.connection.getRepository(Distillation).createQueryBuilder().getMany();
+    findAll = async () => {
+        return await this.db.find();
     }
 
-    async findAllByName(nameToFind: string): Promise<Distillation[]> {
-        return await this.connection.getRepository(Distillation).createQueryBuilder("connection").where("connection.name = :name", {name: nameToFind}).getMany();
+    findAllByName = async (nameToFind: string): Promise<Distillation[]> => {
+        return Distillation.fromSQLObjects(await this.db.find({ name: nameToFind}));
     }
-    async findAllByTaxID(taxIDToFind: string): Promise<Distillation[]> {
-        return await this.connection.getRepository(Distillation).createQueryBuilder("connection").where("connection.taxID = :taxID", {taxID: taxIDToFind}).getMany();
-    }
-
-    async sumAllHLFByName(nameToFind: string): Promise<number> {
-        return await this.connection.getRepository(Distillation)
-        .createQueryBuilder("connection")
-        .select("connection.name")
-        .addSelect("SUM(connection.HLF)", "sum")
-        .where("connection.name = :name", {name: nameToFind})
-        .getRawOne();
+    findAllByTaxID = async (taxIDToFind: string): Promise<Distillation[]> => {
+        return Distillation.fromSQLObjects(await this.db.find({taxID: taxIDToFind}));
     }
 
-    async sumAllHLFByTaxID(taxIDToFind: string): Promise<number> {
-        return await this.connection.getRepository(Distillation)
-        .createQueryBuilder("connection")
-        .select("connection.name")
-        .addSelect("SUM(connection.HLF)", "sum")
-        .where("connection.taxID = :taxID", {taxID: taxIDToFind})
-        .getRawOne();
+    sumAllHLFByName = async (nameToFind: string): Promise<number> => {
+        const dist: any[] = await this.db.find({name: nameToFind});
+        return dist.reduce((accumulator, item: any) => accumulator + item.HLF, 0);
     }
 
-    async sumAllWeightByName(nameToFind: string): Promise<number> {
-        return await this.connection.getRepository(Distillation)
-        .createQueryBuilder("connection")
-        .select("connection.name")
-        .addSelect("SUM(connection.weightInKilograms)", "sum")
-        .where("connection.name = :name", {name: nameToFind})
-        .getRawOne();
+    sumAllHLFByTaxID = async (taxIDToFind: string): Promise<number> => {
+        const dist: any[] = await this.db.find({taxID: taxIDToFind});
+        return dist.reduce((accumulator, item: any) => accumulator + item.HLF, 0);
     }
 
-    async sumAllWeightByTaxID(taxIDToFind: string): Promise<number> {
-        return await this.connection.getRepository(Distillation)
-        .createQueryBuilder("connection")
-        .select("connection.name")
-        .addSelect("SUM(connection.HLF)", "sum")
-        .where("connection.taxID = :taxID", {taxID: taxIDToFind})
-        .getRawOne();
+    sumAllWeightByName = async (nameToFind: string): Promise<number> => {
+        const dist: any[] = await this.db.find({name: nameToFind});
+        return dist.reduce((accumulator, item: any) => accumulator + item.weightInKilograms, 0);
     }
 
-
-    async createNewDistillation(modelObject: Distillation): Promise<InsertResult> {
-        return await this.connection
-        .createQueryBuilder()
-        .insert()
-        .into(Distillation)
-        .values([
-            modelObject
-         ])
-        .execute();
+    sumAllWeightByTaxID = async (taxIDToFind: string): Promise<number> => {
+        const dist: any[] = await this.db.find({taxID: taxIDToFind});
+        return dist.reduce((accumulator, item: any) => accumulator + item.weightInKilograms, 0);
     }
 
-    async updateDistillation(modelObject: Distillation): Promise<UpdateResult> {
-        return await this.connection
-        .createQueryBuilder()
-        .update(Distillation)
-        .set(modelObject)
-        .where("id = :id", { id: modelObject.id })
-        .execute();
+    createNewDistillation = async (modelObject: Distillation): Promise<Distillation> => {
+        await this.db.insert(modelObject);
+        return Distillation.fromSQLObject(await this.db.find(modelObject._id));
     }
 
-    async deleteDistillation(modelObject: Distillation): Promise<DeleteResult> {
-        return await this.connection.createQueryBuilder()
-        .delete()
-        .from(Distillation)
-        .where("id = :id", { id: modelObject.id })
-        .execute();
+    updateDistillation = async (modelObject: Distillation): Promise<Distillation> => {
+        const id = modelObject._id;
+        delete modelObject._id;
+        await this.db.update(id, modelObject);
+        return Distillation.fromSQLObject(await this.db.find(modelObject._id));
     }
 
-    async closeConnection(): Promise<void> {
-        await this.connection.close();
+    deleteDistillation = async (modelObject: Distillation): Promise<any> => {
+        return await this.db.remove({_id: modelObject._id});
     }
 }

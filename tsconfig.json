@@ -7,8 +7,9 @@
         "target": "ES2017",
         "jsx": "react",
         "experimentalDecorators": true, 
+        "allowSyntheticDefaultImports": true,
     },
     "include": [
-        "./src/**/*"
+        "./src/**/*", "node_modules/typeorm/TypeORMShim.js"
     ]
 }

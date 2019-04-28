@@ -1,3 +1,6 @@
+import {SagaType} from '../TypeModels/SagaType';
+import {ReduxType} from '../TypeModels/ReduxType';
+
 export const enum payloadNames {
     TABLE_LOADING = 'tableLoading',
     TABLE_EXCEPTION = 'tableException',
